@@ -134,8 +134,8 @@ class Data {
   }
 
   // check si la cedula es unica
-  checkCardId(idcard){
-      return this.users.find( u => u.idcard === idcard) ? true : false;
+  isUniqueCardId(idcard){
+      return this.users.find( u => u.idcard === idcard) ? false : true;
   }
 
   // obtiene todos los usuarios

@@ -15,6 +15,7 @@ import ViewList from '@material-ui/icons/ViewList';
 import Home from '@material-ui/icons/Home';
 import Badge from '@material-ui/core/Badge';
 import Box from '@material-ui/core/Box';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import { withStyles } from '@material-ui/core/styles';
 import Menu from '@material-ui/core/Menu';
@@ -169,22 +170,28 @@ const Header = (props) => {
             Vacunación Kruger
           </Typography>
 
-          <Typography variant="h6" className="header-user">
-                {props.login.user}
-          </Typography>
+          <Tooltip title="Usuario Conectado">
+            <Typography variant="h6" className="header-user">
+                  {props.login.user}
+            </Typography>
+          </Tooltip>
           
           <Box display="flex">
               <Box m={1}>
-                <IconButton aria-label="mail" onClick={() => props.aShowHome()}>
-                  <Badge badgeContent={0} color="secondary" className="header-badge" onClick={ShowHome}>
-                    <Home />
-                  </Badge>
-                </IconButton>
+                <Tooltip title="Regresar Inicio">
+                  <IconButton aria-label="mail" onClick={() => props.aShowHome()}>
+                    <Badge badgeContent={0} color="secondary" className="header-badge" onClick={ShowHome}>
+                      <Home />
+                    </Badge>
+                  </IconButton>
+                </Tooltip>
               </Box>
               <Box m={1}>
               </Box>  
           </Box>
-          <Button color="inherit" onClick={sendLogout}>Logout</Button>
+          <Tooltip title="Salir del sistema">
+              <Button color="inherit" onClick={sendLogout}>Salir</Button>
+          </Tooltip>
         </Toolbar>
       </AppBar>
     </div>)
