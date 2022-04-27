@@ -1,0 +1,130 @@
+
+
+/*body {
+    //background-image: url('../img/login-fondo.jpg');
+}*/
+
+
+/*
+    HEADER STYLES
+*/
+.header-badge{
+    right: -3;
+    border: 2px solid inherit;
+    padding: 0 1px,
+}
+
+.header-root{
+    flex-grow: 1;
+}
+
+.header-menuButton{
+    margin-right: 2;
+}
+
+.header-user{
+    margin-right: 12px !important;
+    font-size: 1.2em !important;
+}
+
+.header-title{
+    flex-grow: 1;
+}
+
+/*
+    LOGIN STYLES
+*/
+
+.login-box{
+    color: white;
+    width: 120px;
+    font-size: 2em;
+}
+
+.login-paper {
+    display: flex;
+    margin-top: 64px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-avatar {
+    margin: 8px;
+    background-color: #f50057 !important;
+}
+
+.login-msg {
+    margin-top: -4px;
+    margin-bottom: 8px;
+    color: #f50057 !important;
+}
+
+.login-form {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.login-submit {
+    margin: 24px 0px 16px !important;
+}
+
+/*
+    ITEMS STYLES
+*/
+.items-icon{
+    margin-right: 1,
+}
+
+.items-hero-content{
+    padding: 64px 0px 48px;
+    background-color: #fff;
+}
+
+.items-hero-buttons{
+    margin-top: 8px;
+}
+
+.items-card-grid{
+    padding-top: 64px;
+    padding-bottom: 64px;
+}
+
+.items-card{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.items-space{
+    width: 25%;
+}
+
+.items-card-media{
+    padding-top: 84.25%;
+}
+
+.items-card-content{
+    flex-grow: 1;
+}
+
+.items-footer {
+    background-color: #fff;
+    padding: 9;
+}
+
+.purchase-total{
+    font-size: 1.8em !important;
+    font-weight: bold !important;
+}
+
+.purchase-bold{
+    font-weight: bold !important;
+}
+
+.purchase-buttons{
+    margin-top: 12px;
+}
+
+.purchase-item{
+    padding: 0;
+}
