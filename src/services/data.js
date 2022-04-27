@@ -34,17 +34,6 @@ class Data {
       this.getUsers((users, stadistics) => {
           this.users = Object.values(users);
       })
-      /*// ejemplo de prueba para el usuario administrador
-      let employee= {
-          name     : 'Roberto Eduardo',
-          lastName : 'Escobar Cando',
-          idcard   : '1718494857',
-          email    : 'rober_es_3@hotmail.com',
-          rol      : 'admin'
-      }
-      this.setUserAndPass(employee, (updatedEmployee) => {
-          this.addEmployee(updatedEmployee);
-      })*/
   }
 
 
@@ -135,7 +124,7 @@ class Data {
 
   // check si la cedula es unica
   isUniqueUser(user){
-    return this.users.find( u => u.user === user) ? false : true;
+    return this.users.find( u => u.user === user.user && u.cardId !== user.cardId) ? false : true;
 }
 
   // obtiene todos los usuarios

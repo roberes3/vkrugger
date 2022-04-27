@@ -110,6 +110,41 @@ export const isOnlyLetters = (str) => {
         );
 }
 
+// verifica que un numero sea valido
+export const isNumber = (str, min, max) => {
+    if(!str){
+        return false;
+    }
+    try{
+        let number = parseInt(str);
+        if(number >= min && number <= max){
+            return true;
+        }
+    }catch(e){}
+    return false;
+}
+
+// compara dos fechas
+export const compareDate = (date1, date2) => {
+    let date1D = new Date(date1);
+    let date2D = new Date(date2);
+
+    date1D.setMilliseconds(0);
+    date1D.setMinutes(0);
+    date1D.setSeconds(0);
+    date1D.setHours(0);
+
+    date2D.setMilliseconds(0);
+    date2D.setMinutes(0);
+    date2D.setSeconds(0);
+    date2D.setHours(0);
+
+    if(date1D <= date2D){
+        return true;
+    }
+    return false;
+}
+
 // determina si solo contiene letras
 export const isLettersNumbers = (str) => {
     if(!str){ // si es vacio
@@ -117,6 +152,6 @@ export const isLettersNumbers = (str) => {
     }
     return String(str)
         .match(
-            /^[A-Za-z0-9 ]+$/
+            /^[A-Za-z0-9 _]+$/
         );
 }

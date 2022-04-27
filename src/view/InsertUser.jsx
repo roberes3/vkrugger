@@ -86,7 +86,7 @@ const FormInsert = ({setMsg}) => {
         }else{
             form.email = false;
             form.isValid = false;
-            NotificationManager.error('Ingrese un correo valido');
+            NotificationManager.error('Ingrese un correo válido');
         }
         // valida el nombre
         if(utils.isRequered(employee.name)){
@@ -94,7 +94,7 @@ const FormInsert = ({setMsg}) => {
         }else{
             form.name = false;
             form.isValid = false;
-            NotificationManager.error('Ingrese un nombres validos');
+            NotificationManager.error('Ingrese un nombres válidos');
         }
         // valida el apellido
         if(utils.isRequered(employee.lastName)){
@@ -102,7 +102,7 @@ const FormInsert = ({setMsg}) => {
         }else{
             form.lastName = false;
             form.isValid = false;
-            NotificationManager.error('Ingrese apellidos validos');
+            NotificationManager.error('Ingrese apellidos válidos');
         }
         return form.isValid;
     }

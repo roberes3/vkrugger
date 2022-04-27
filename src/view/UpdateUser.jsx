@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: theme.spacing(1),
     },
     formControl: {
-        margin: theme.spacing(1),
         minWidth: '100%',
       },
       selectEmpty: {
@@ -85,7 +84,7 @@ const FormUpdate = ({setMsg, dataUpdate, login}) => {
         }else{
             form.email = false;
             form.isValid = false;
-            NotificationManager.error('Ingrese un correo valido');
+            NotificationManager.error('Ingrese un correo válido');
         }
 
         // valida el nombre
@@ -94,7 +93,7 @@ const FormUpdate = ({setMsg, dataUpdate, login}) => {
         }else{
             form.name = false;
             form.isValid = false;
-            NotificationManager.error('Ingrese un nombres validos');
+            NotificationManager.error('Ingrese un nombres válidos');
         }
 
         // valida el apellido
@@ -103,16 +102,64 @@ const FormUpdate = ({setMsg, dataUpdate, login}) => {
         }else{
             form.lastName = false;
             form.isValid = false;
-            NotificationManager.error('Ingrese apellidos validos');
+            NotificationManager.error('Ingrese apellidos válidos');
         }
 
-        // valida el apellido
+        // valida el usuario
+        if(Data.isUniqueUser(employee)){
+            form.user = true;
+        }else{
+            form.user = false;
+            form.isValid = false;
+            NotificationManager.error('El usuario ' + employee.user + " ya está utilizando");
+        }
+
+        // valida del password
         if(utils.isPassword(employee.pass)){
             form.pass = true;
         }else{
             form.pass = false;
             form.isValid = false;
             NotificationManager.error('Ingrese un password de 6 caracteres o más');
+        }
+
+        // valida la fecha de nacimiento
+        if(utils.compareDate(employee.birthday, new Date())){
+            form.birthday = true;
+        }else{
+            form.birthday = false;
+            form.isValid = false;
+            NotificationManager.error('La fecha de nacimiento no puede ser mayor que la actual');
+        }
+
+        // valida los datos de la vacuna
+        if(employee.isVaccinated){
+
+            // valida la fecha de nacimiento
+            if(utils.compareDate(employee.vaccine.date, new Date())){
+                form.date = true;
+            }else{
+                form.date = false;
+                form.isValid = false;
+                NotificationManager.error('La fecha de vacunación no puede ser mayor que la actual');
+            }
+
+            // valida la fecha de nacimiento
+            if(utils.isRequered(employee.vaccine.type)){
+                form.type = true;
+            }else{
+                form.type = false;
+                form.isValid = false;
+                NotificationManager.error('Ingrese un valor en tipo de vacuna');
+            }
+
+            if(utils.isNumber(employee.vaccine.doses, 1, 10)){
+                form.doses = true;
+            }else{
+                form.doses = false;
+                form.isValid = false;
+                NotificationManager.error('Ingrese en las dosis un número de 1 al 10');
+            }
         }
 
         return form.isValid;
@@ -190,13 +237,18 @@ const FormUpdate = ({setMsg, dataUpdate, login}) => {
             changedEmployee.address = e.target.value;
             break;
         case "I": // esta vacunado
+            if(changedEmployee.isVaccinated){
+                changedEmployee.vaccine.type  = "";
+                changedEmployee.vaccine.doses = "";
+                changedEmployee.vaccine.date  = (new Date()).toString();
+            }
             changedEmployee.isVaccinated = !changedEmployee.isVaccinated;
             break;
         case "VT": // tipo de vacuna
             changedEmployee.vaccine.type = e.target.value;
             break;
         case "VD": // dosis de vacunacion
-            changedEmployee.vaccine.doses = e.target.value
+            changedEmployee.vaccine.doses = e.target.value;
             break;
         case "VF": // fecha de vacunacion
             changedEmployee.vaccine.date = e.toString();
@@ -306,7 +358,7 @@ const FormUpdate = ({setMsg, dataUpdate, login}) => {
 
             <Grid item xs={12} sm={6}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <Grid container style={{width:'100%'}}>
+                    <Grid container style={{width:'100%', marginTop:'-1.1em'}}>
                         <KeyboardDatePicker
                             error={!form.birthday}
                             style={{width:'100%'}}
@@ -341,8 +393,9 @@ const FormUpdate = ({setMsg, dataUpdate, login}) => {
 
             <Grid item xs={12} sm={6}>
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-label">Rol</InputLabel>
+                    <InputLabel id="demo-simple-select-label">Rol *</InputLabel>
                     <Select
+                        required
                         disabled={login.rol != 'admin'}
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -370,7 +423,7 @@ const FormUpdate = ({setMsg, dataUpdate, login}) => {
 
             <Grid item xs={12}>
                 <FormControlLabel
-                    control={<Checkbox color="secondary" name="vacuna" value={form.isVaccinated} />}
+                    control={<Checkbox color="secondary" name="vacuna" checked={employee.isVaccinated} />}
                     label=" Está Vacunado "
                     onChange={(e) => dataChange(e,'I')}
                 />
@@ -378,9 +431,8 @@ const FormUpdate = ({setMsg, dataUpdate, login}) => {
 
             <Grid item xs={12} sm={6} style={{display : employee.isVaccinated ? '' : 'none'}}>
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="vaccineType">Tipo Vacuna</InputLabel>
+                    <InputLabel id="vaccineType">Tipo Vacuna *</InputLabel>
                     <Select
-                        disabled={login.rol != 'admin'}
                         error={!form.type}
                         labelId="vaccineType"
                         id="vaccineTypeSelect"
@@ -390,7 +442,7 @@ const FormUpdate = ({setMsg, dataUpdate, login}) => {
                             <MenuItem value='Sputnik'>Sputnik</MenuItem>
                             <MenuItem value='AstraZeneca'>AstraZeneca</MenuItem>
                             <MenuItem value='Pfizer'>Pfizer</MenuItem>
-                            <MenuItem value='Jhonson&Jhonson'>Jhonson&&Jhonson</MenuItem>
+                            <MenuItem value='Jhonson&Jhonson'>Jhonson&Jhonson</MenuItem>
                     </Select>
                 </FormControl>  
             </Grid>
@@ -401,6 +453,7 @@ const FormUpdate = ({setMsg, dataUpdate, login}) => {
 
             <Grid item xs={12} sm={6} style={{display : employee.isVaccinated ? '' : 'none'}}>
                 <TextField
+                    required
                     value= {employee.vaccine.doses}
                     onChange={(e) => dataChange(e, 'VD')}
                     error={!form.doses}
@@ -415,9 +468,10 @@ const FormUpdate = ({setMsg, dataUpdate, login}) => {
 
             <Grid item xs={12} sm={6} style={{display : employee.isVaccinated ? '' : 'none'}}>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <Grid container style={{width:'100%'}}>
+                    <Grid container style={{width:'100%',marginTop:'-1.1em'}}>
                         <KeyboardDatePicker
                             required
+                            error={!form.date}
                             style={{width:'100%'}}
                             disableToolbar
                             variant="inline"
@@ -441,7 +495,7 @@ const FormUpdate = ({setMsg, dataUpdate, login}) => {
                     color="primary"
                     onClick={saveEmployee}
                     className={classes.button}>
-                    Guardar Empleado
+                    Actualizar
                   </Button>
                 </div>
             
