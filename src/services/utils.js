@@ -90,6 +90,15 @@ export const isRequered = (str) => {
     return true;
 }
 
+// determina si es requerido
+export const isPassword = (str) => {
+    str = String(str).trim(); // retira los espacios del principio y final
+    if(!str || str.length < 6){
+        return false
+    }
+    return true;
+}
+
 // determina si solo contiene letras
 export const isOnlyLetters = (str) => {
     if(!str){ // si es vacio
@@ -99,5 +108,15 @@ export const isOnlyLetters = (str) => {
         .match(
             /^[A-Za-z ]+$/
         );
+}
 
+// determina si solo contiene letras
+export const isLettersNumbers = (str) => {
+    if(!str){ // si es vacio
+        return true;
+    }
+    return String(str)
+        .match(
+            /^[A-Za-z0-9 ]+$/
+        );
 }

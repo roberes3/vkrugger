@@ -8,7 +8,7 @@ import * as ROUTE from '../routes/const';
 let initialState =  {
       view : "login",
       isAuth: false,
-      update: 0,
+      update: {type: 0, user:null},
       user: "",
       pass: "",
       login : null,
@@ -61,6 +61,7 @@ export default (state = initialState, action) => {
       case ACTION.SHOW_UPDATE_USER:{ // inserta un nuevo usuario
         newState.view  = ROUTE.UPDATE;
         history.push(ROUTE.UPDATE); // se coloca en la pagina de compra
+        newState.update = action.update;
         return newState;
       }
 

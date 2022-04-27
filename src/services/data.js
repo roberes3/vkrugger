@@ -97,34 +97,29 @@ class Data {
     let pass = password.randomPassword({ length: 6, characters: [password.lower, password.upper, password.digits] });
 
     // verifica si existe el usuario generado en la base de datos
-    const starRef = ref(db, 'users/' + user);
-
-    onValue(starRef, (snapshot) => {
-        const data = snapshot.val();
-        if(data){ // obtiene un nuevo usuario
-            this.getUserAndPass(employee, callback);
-        }else{ // retorna el empleado con el usuario y password
-            callback({...employee, user, pass});                
-        }
-    }, {onlyOnce: true} );        
+    if(this.isUniqueUser(user)){ // retorna el empleado con el usuario y password
+        callback({...employee, user, pass});  
+    }else{ // busca un nuevo usuario
+        this.getUserAndPass(employee, callback);              
+    }      
   }  
 
   // actualiza datos del empleado
   updateEmployee(employee){
     // actualiza en firebase el empleado
-    return set(ref(db, 'users/' + employee.user ), employee);
+    return set(ref(db, 'users/' + employee.cardId ), employee);
   }
 
   // inserta los datos del usuario
   addEmployee(employee){
     // actualiza en firebase el empleado
-    return set(ref(db, 'users/' + employee.user ), employee);
+    return set(ref(db, 'users/' + employee.cardId ), employee);
   }
 
   // elimina los datos del empleado
   deleteEmployee(employee){
     // actualiza en firebase el empleado
-    return set(ref(db, 'users/' + employee.user ), null);
+    return set(ref(db, 'users/' + employee.cardId ), null);
   }
 
   // verifica si el usuario existe
@@ -137,6 +132,11 @@ class Data {
   isUniqueCardId(idcard){
       return this.users.find( u => u.idcard === idcard) ? false : true;
   }
+
+  // check si la cedula es unica
+  isUniqueUser(user){
+    return this.users.find( u => u.user === user) ? false : true;
+}
 
   // obtiene todos los usuarios
   getUsers(callback){

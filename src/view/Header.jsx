@@ -72,7 +72,7 @@ const MainMenu = ({props}) => {
 
   const updateData = () => {
     setAnchorEl(null);
-    props.aShowUpdate();
+    props.aShowUpdate({type:0, user:{...props.login}});
   };
 
   const addUser = () => {

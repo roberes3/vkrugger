@@ -41,13 +41,13 @@ const FormInsert = ({setMsg}) => {
         email    : "",
         cardId   : "",
         rol      : "user",
-        birthday : new Date(),
+        birthday : (new Date()).toString(),
         address  : "",
         phone    : "",
         isVaccinated : false,
         vaccine      : {
             type  : '',
-            date  : new Date(),
+            date  : (new Date()).toString(),
             doses : ''
         }
     });
@@ -110,16 +110,19 @@ const FormInsert = ({setMsg}) => {
     // guarda al empleado
     const saveEmployee = () => {
 
-        if(!isValidForm()){
+        if(!isValidForm()){ // pregunta si es valida los datos de la forma
             form.msg = "Ingrese correctamente los datos solicitados";
             setForm({...form});
             setMsg(form.msg);
             return;
         }
+
+        employee.name = String(employee.name).trim();
+        employee.lastName = String(employee.lastName).trim();
+
         // coloca el usuario asignado y el password
         Data.setUserAndPass(employee, (updatedEmployee) => {
-            updatedEmployee.name = String(updatedEmployee.name).trim();
-            updatedEmployee.lastName = String(updatedEmployee.lastName).trim();
+            
             // envia a inserta el empleado
             Data.addEmployee(updatedEmployee)
                 .then( result => {

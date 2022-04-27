@@ -22,9 +22,9 @@ export const aShowHome = (clean) => ({
 
 
 // muestra la pagina de actualizacion de usuario
-export const aShowUpdate = (clean) => ({
+export const aShowUpdate = (update) => ({
     type: ACTION.SHOW_UPDATE_USER,
-    clean
+    update
 });
 
 
