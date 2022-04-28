@@ -57,3 +57,19 @@ Credenciales para el ingreso al sistema:\
      usuario: mary    &   contraseña: moreira    ->   Empleado
 
 
+## La Applicación
+
+* Login \
+  ![Vista del Login](https://github.com/roberes3/vkrugger/blob/main/app/login.png)
+
+* Principal \
+  ![Vista Principal](https://github.com/roberes3/vkrugger/blob/main/app/home.png)
+
+* Actualizar Datos \
+  ![Actualizar Datos](https://github.com/roberes3/vkrugger/blob/main/app/actualizar.png)
+
+* Añadir Empleado \
+  ![Actualizar Datos](https://github.com/roberes3/vkrugger/blob/main/app/insertar.png)
+
+* Consultas \
+  ![Consultas](https://github.com/roberes3/vkrugger/blob/main/app/consultas.png)
