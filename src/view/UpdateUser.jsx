@@ -28,7 +28,6 @@ import { NotificationManager } from 'react-notifications';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
@@ -396,7 +395,7 @@ const FormUpdate = ({setMsg, dataUpdate, login}) => {
                     <InputLabel id="demo-simple-select-label">Rol *</InputLabel>
                     <Select
                         required
-                        disabled={login.rol != 'admin'}
+                        disabled={login.rol !== 'admin'}
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={employee.rol}

@@ -1,7 +1,7 @@
 
 // Your web app's Firebase configuration
 import db from "./firebase";
-import { ref, onValue, set, onChildAdded, onChildChanged, onChildRemoved, get} from "firebase/database";
+import { ref, onValue, set, onChildAdded, onChildChanged, onChildRemoved} from "firebase/database";
 import password from 'secure-random-password';
 
 // Clase que maneja los datos suminstrados por firebase
@@ -118,7 +118,7 @@ class Data {
   // verifica si el usuario existe
   checkUser(user, pass){
     // verifica si existe el usuario generado en la base de datos
-    return this.users.find( u => u.user === user && u.pass == pass);        
+    return this.users.find( u => u.user === user && u.pass === pass);        
   }
 
   // check si la cedula es unica
@@ -170,6 +170,8 @@ class Data {
                         break;
                     case 'Jhonson&Jhonson':
                         ++staditics.jhonson;
+                        break;
+                    default:
                         break;
                 }
                 

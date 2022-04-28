@@ -21,7 +21,7 @@ import Copyright from '../components/Footer';
 // componente que muestra el mensaje de login, cuando existe un error
 function LoginMsg(props){
     
-    if(props.msg.length == 0){
+    if(props.msg.length === 0){
         return null;
     }else{
         return (
@@ -97,6 +97,8 @@ class Login extends React.Component {
       case "save":
         this.setState({save: !this.state.save});
         break;
+      default:
+        return;
     }
   }
 

@@ -17,12 +17,12 @@ let initialState =  {
 
 // reductor de la ienda online
 export default (state = initialState, action) => {
-    let login, newState = {...state};  
+    let newState = {...state};  
 
     switch (action.type) {
 
       case ACTION.SEND_LOGIN:{ // realiza el login
-        login = DB.checkUser(action.user, action.pass);
+        let login = DB.checkUser(action.user, action.pass);
         if(login){
           newState.loginMsg = "";
           newState.filter   = "";

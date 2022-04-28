@@ -30,23 +30,23 @@ export const isCedula = (cedula) => {
       //Agrupo los impares, los multiplico por un factor de 2, si la resultante es > que 9 le restamos el 9 a la resultante
       var numero1 = cedula.substring(0,1);
       var numero1 = (numero1 * 2);
-      if( numero1 > 9 ){ var numero1 = (numero1 - 9); }
+      if( numero1 > 9 ){ numero1 = (numero1 - 9); }
 
       var numero3 = cedula.substring(2,3);
       var numero3 = (numero3 * 2);
-      if( numero3 > 9 ){ var numero3 = (numero3 - 9); }
+      if( numero3 > 9 ){ numero3 = (numero3 - 9); }
 
       var numero5 = cedula.substring(4,5);
       var numero5 = (numero5 * 2);
-      if( numero5 > 9 ){ var numero5 = (numero5 - 9); }
+      if( numero5 > 9 ){ numero5 = (numero5 - 9); }
 
       var numero7 = cedula.substring(6,7);
       var numero7 = (numero7 * 2);
-      if( numero7 > 9 ){ var numero7 = (numero7 - 9); }
+      if( numero7 > 9 ){ numero7 = (numero7 - 9); }
 
       var numero9 = cedula.substring(8,9);
       var numero9 = (numero9 * 2);
-      if( numero9 > 9 ){ var numero9 = (numero9 - 9); }
+      if( numero9 > 9 ){ numero9 = (numero9 - 9); }
 
       var impares = numero1 + numero3 + numero5 + numero7 + numero9;
 

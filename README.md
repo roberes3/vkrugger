@@ -36,7 +36,7 @@ Las consultas y gráfico se actualizan en línea si otro usuario ingresa, modifi
 
 ## Dependencias
 
-Node JS (Se ha probado en la versión 16.14.2)
+Node JS (Se ha probado en la versión 16.14.2 y 16.13.1)
 
 Browser de su preferencia (Se ha probado bajo Google Chrome)
 
@@ -45,7 +45,11 @@ Conectividad a Internet (Por conexión a Firebase es requerida)
 
 ## Iniciar Applicación
 
-En el directorio del proyecto, correr:
+En el directorio del proyecto, ejecutar los comandos:
+
+### `npm install`
+
+Instalar las dependencias de las librerías, y luego dar
 
 ### `npm start`
 
