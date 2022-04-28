@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
-const Item = () => (
+const Footer = () => (
     <Typography variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
         <Link color="inherit" target="_blank" href="https://krugercorp.com/">
@@ -13,4 +13,4 @@ const Item = () => (
   </Typography>
 );
 
-export default Item;
+export default Footer;

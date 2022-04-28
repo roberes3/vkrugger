@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Data from '../services/data';
 
-import Copyright from '../components/Copyright';
+import Copyright from '../components/Footer';
 
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
@@ -51,7 +51,7 @@ export default function Home() {
       },
       title: {
         display: true,
-        text: `Empleados de Krugger ( ${stadistics.vacated} Vacunados y ${stadistics.noVacated} No Vacunados)`
+        text: `Empleados de Krugger ( ${stadistics.vacated} Vacunados y ${stadistics.noVacated} No Vacunados )`
       },
     },
   };
@@ -61,7 +61,7 @@ export default function Home() {
       labels,
       datasets: [
         {
-          label: 'Número de Vacunas',
+          label: 'Número de Empleados',
           data: [stadistics.sputnik, stadistics.astraZeneca, stadistics.pfizer, stadistics.jhonson, stadistics.noVacated],
           backgroundColor: 'rgba(53, 162, 235, 0.5)',
         }    

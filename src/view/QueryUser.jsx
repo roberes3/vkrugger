@@ -24,7 +24,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Data from '../services/data';
 import * as utils from '../services/utils';
 
-import Copyright from '../components/Copyright';
+import Copyright from '../components/Footer';
 import DeleteUser from './DeleteUser';
 import { NotificationManager } from 'react-notifications';
 
@@ -88,13 +88,10 @@ const QueryUser = ({login, aShowUpdate}) => {
         }
     });
 
-    let users, data = Data.getUsers();
+    let users, data = Data.getUsers();    
    
     // si esta activo el filtro lo ejecuta
     switch(query.type){
-        case FILTER_NO:
-            users = data;
-            break;
         case FILTER_VACCINATION_STATUS:
             if(query.param1 == 'vacunados'){
                 users = data.filter( u => u.isVaccinated);
@@ -111,8 +108,23 @@ const QueryUser = ({login, aShowUpdate}) => {
                 break;
             }
             users = data.filter( u => u.isVaccinated && utils.compareDate(query.param1, u.vaccine.date) && utils.compareDate(u.vaccine.date, query.param2));
+            break;
+        case FILTER_NO:
+        default:
+            users = data;
             break;    
     }
+
+    // ordena por el nombre de los usuarios
+    users.sort( (a,b) => {
+        if (a.name > b.name) {
+            return 1;
+        }
+        if (a.name < b.name) {
+           return -1;
+        }
+        return 0;
+    })
 
     // actualiza los inputs
     const dataChange = (e, type) => {
@@ -192,7 +204,7 @@ const QueryUser = ({login, aShowUpdate}) => {
               <TableHead>
                 <TableRow>
                   <TableCell>Cédula</TableCell>
-                  <TableCell>Nombre</TableCell>
+                  <TableCell>Nombre *</TableCell>
                   <TableCell>Rol</TableCell>
                   <TableCell>Vacunado</TableCell>
                   <TableCell>Tipo Vacuna</TableCell>

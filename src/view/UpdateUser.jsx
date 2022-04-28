@@ -19,7 +19,7 @@ import TextField from '@material-ui/core/TextField';
 
 import Button from '@material-ui/core/Button';
 
-import Copyright from '../components/Copyright';
+import Copyright from '../components/Footer';
 import * as utils from '../services/utils';
 import Data from '../services/data';
 

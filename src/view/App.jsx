@@ -1,6 +1,6 @@
 import React from 'react'; //Importamos react
 import AppRoutes from '../routes/routes';
-import Header from './Header';
+import Header from '../components/Header';
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer} from 'react-notifications';
 

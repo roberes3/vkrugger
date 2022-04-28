@@ -23,8 +23,8 @@
 }
 
 .header-user{
-    margin-right: 12px !important;
-    font-size: 1.2em !important;
+    margin-right: 2em !important;
+    font-size: 1.3em !important;
 }
 
 .header-title{
@@ -108,7 +108,7 @@
 }
 
 .items-footer {
-    background-color: #fff;
+    background-color: #fafafa;
     padding: 9;
 }
 

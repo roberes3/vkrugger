@@ -11,7 +11,7 @@ let initialState =  {
       update: {type: 0, user:null},
       user: "",
       pass: "",
-      login : null,
+      login : {},
       loginMsg: "",
 };
 
@@ -40,15 +40,15 @@ export default (state = initialState, action) => {
       }
 
       case ACTION.SEND_LOGOUT:{ // realiza el logout
+        history.push(ROUTE.LOGIN); // se coloca en la pagina de login
         newState.loginMsg = "";
         newState.filter   = "";
         newState.isAuth   = false;
-        newState.login    = null;
+        newState.login    = {};
         newState.user     = "";
         newState.pass     = "";
-        newState.view     = ROUTE.INIT;
-        newState.items    = [];
-        history.push(ROUTE.INIT); // se coloca en la pagina de login
+        newState.view     = ROUTE.LOGIN;
+        newState.items    = [];        
         return newState;
       }
 

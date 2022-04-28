@@ -16,11 +16,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
-import Copyright from '../components/Copyright';
+import Copyright from '../components/Footer';
 
 // componente que muestra el mensaje de login, cuando existe un error
 function LoginMsg(props){
-    console.log(props);
     
     if(props.msg.length == 0){
         return null;

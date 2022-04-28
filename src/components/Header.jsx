@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/ExitToApp';
 
 import User from '@material-ui/icons/Person';
 import UserAdd from '@material-ui/icons/PersonAdd';
@@ -44,7 +45,7 @@ const StyledMenu = withStyles({
   />
 ));
 
-// componente del menu item
+// Componente del menu item
 const StyledMenuItem = withStyles((theme) => ({
   root: {
     '&:focus': {
@@ -84,47 +85,46 @@ const MainMenu = ({props}) => {
     props.aShowQuery();
   };
 
+  const logout = () => {
+    setAnchorEl(null);
+    props.aSendLogout();
+  };
+
 
   // menu del administrador 
   const menuAdmin = () => {
-    return (
-    <React.Fragment>
-        <StyledMenuItem onClick={updateData}>
-          <ListItemIcon>
-            <User fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Actualizar mis datos" />
-        </StyledMenuItem>
+    const items = [
+          { key: 1, click: updateData, icon: <User fontSize="small" />,      text: "Actualizar mis datos"},
+          { key: 2, click: addUser   , icon: <UserAdd fontSize="small" />,   text: "Añadir empleado"},
+          { key: 3, click: query     , icon: <ViewList fontSize="small" />,  text: "Consultar datos"},
+          { key: 4, click: logout    , icon: <CloseIcon fontSize="small" />, text: "Salir"},
+    ];
 
-        <StyledMenuItem onClick={addUser}>
+    return items.map( item => {
+      return (
+        <StyledMenuItem onClick={item.click} key={item.key}>
           <ListItemIcon>
-            <UserAdd fontSize="small" />
+            {item.icon}
           </ListItemIcon>
-          <ListItemText primary="Añadir empleado" />
+          <ListItemText primary={item.text} />
         </StyledMenuItem>
-
-        <StyledMenuItem onClick={query}>
-          <ListItemIcon>
-            <ViewList fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Consultar datos" />
-        </StyledMenuItem>
-    </React.Fragment>)
+      );
+    });
   }
 
   // menu del empleado 
   const menuEmployee = () => {
-    return (
-    <React.Fragment>
+    return (    
         <StyledMenuItem onClick={updateData}>
           <ListItemIcon>
             <User fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Actualizar mis datos" />
         </StyledMenuItem>
-    </React.Fragment>)
+    )
   }
 
+  // renderiza el menu
   return (
     <div>
       
@@ -153,10 +153,6 @@ const Header = (props) => {
     props.aSendLogout();
   }
 
-  let ShowHome = () => {
-    
-  }
-
   // si esta autentificado muestra informacion del usuario
   if(props.isAuth){
     return (<div className="header-root">
@@ -169,7 +165,7 @@ const Header = (props) => {
             Vacunación Kruger
           </Typography>
 
-          <Tooltip title="Usuario Conectado">
+          <Tooltip title="Actual usuario">
             <Typography variant="h6" className="header-user">
                   {props.login.user}
             </Typography>
@@ -177,8 +173,8 @@ const Header = (props) => {
           
           <Box display="flex">
               <Box m={1}>
-                <Tooltip title="Regresar Inicio">
-                  <IconButton aria-label="mail" onClick={() => props.aShowHome()}>
+                <Tooltip title="Ir a inicio">
+                  <IconButton style={{backgroundColor: '#f50057', color: '#ffffff'}} aria-label="mail" onClick={() => props.aShowHome()}>
                       <Home />                  
                   </IconButton>
                 </Tooltip>
