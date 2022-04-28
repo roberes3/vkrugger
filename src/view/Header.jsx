@@ -58,7 +58,7 @@ const StyledMenuItem = withStyles((theme) => ({
 }))(MenuItem);
 
 
-// componente que maneja el menu para mostrar las caracteristicas
+// Componente que maneja el menu para mostrar las caracteristicas
 const MainMenu = ({props}) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 

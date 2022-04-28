@@ -145,6 +145,11 @@ export const compareDate = (date1, date2) => {
     return false;
 }
 
+// formate la fecha 
+export const formatDate = (date) => {
+    return ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + date.getFullYear();
+}
+
 // determina si solo contiene letras
 export const isLettersNumbers = (str) => {
     if(!str){ // si es vacio

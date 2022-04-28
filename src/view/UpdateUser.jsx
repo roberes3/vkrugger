@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { connect } from "react-redux";
-import { aShowHome, aPurchase } from '../redux/actions';
+import { aShowHome } from '../redux/actions';
 
 import { makeStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';

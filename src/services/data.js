@@ -31,15 +31,15 @@ class Data {
       onChildRemoved(usersRef, doNotify);  
       
       // obtiene los usuarios actuales
-      this.getUsers((users, stadistics) => {
+      this.loadUsers((users, stadistics) => {
           this.users = Object.values(users);
       })
   }
 
 
   // añade la subscripcion del componente que esta escuchando
-  addSubscription(name, component){
-    this.subscriptions[name] =  component;
+  addSubscription(name, callback){
+    this.subscriptions[name] = callback;
   }
 
   // remueve la suscripcion del componente
@@ -50,7 +50,7 @@ class Data {
   // notifica de los cambios a las subscripciones
   notifySubscriptions(){    
     // obtiene los usuarios y las estadisticas
-    this.getUsers( (users, staditics) => {
+    this.loadUsers( (users, staditics) => {
         this.users = Object.values(users);;
 
         // si no hay suscripciones escuchando no realiza nada
@@ -59,9 +59,9 @@ class Data {
         }
         // realiza la notificacion a los componentes
         for (let prop in this.subscriptions) {
-            let component =  this.subscriptions[prop];           
-            if(component){
-                component.notify(data, staditics);
+            let callbackNotify =  this.subscriptions[prop];           
+            if(callbackNotify){
+              callbackNotify(data, staditics);
             }
         }
     });    
@@ -125,16 +125,21 @@ class Data {
   // check si la cedula es unica
   isUniqueUser(user){
     return this.users.find( u => u.user === user.user && u.cardId !== user.cardId) ? false : true;
-}
+  }
 
   // obtiene todos los usuarios
-  getUsers(callback){
+  loadUsers(callback){
     const starRef = ref(db, 'users/');
     onValue(starRef, (snapshot) => {
         const data      = snapshot.val();                        
         const staditics = this.getStadistics();
         callback(data, staditics);                        
     }, {onlyOnce: true});
+  }
+
+  // obtiene todos los usuarios
+  getUsers(callback){
+    return this.users;
   }
 
   // obtiene las estadisticas
