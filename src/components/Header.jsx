@@ -66,30 +66,29 @@ const MainMenu = ({props}) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = () => { // cierra el menu
     setAnchorEl(null);
   };
 
-  const updateData = () => {
+  const updateData = () => { // va a la vista de actualizar usuario
     setAnchorEl(null);
     props.aShowUpdate({type:0, user:{...props.login}});
   };
 
-  const addUser = () => {
+  const addUser = () => { // va a la vista de a;adir usuario
     setAnchorEl(null);
     props.aShowInsert();
   };
 
-  const query = () => {
+  const query = () => { // va a la vista de consultas
     setAnchorEl(null);
     props.aShowQuery();
   };
 
-  const logout = () => {
+  const logout = () => { // realiza el logout
     setAnchorEl(null);
     props.aSendLogout();
   };
-
 
   // menu del administrador 
   const menuAdmin = () => {

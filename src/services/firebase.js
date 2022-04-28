@@ -7,6 +7,8 @@
 import { initializeApp } from 'firebase/app'
 import { getDatabase } from 'firebase/database';
 
+// Configuracion dada por Firebase
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {

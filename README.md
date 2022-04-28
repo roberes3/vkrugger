@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Aplicación para registro de vacunaciòn de Kruger
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projecto es un reto desarrollado para Krugger:
 
-## Available Scripts
+Se ha realizado en [React JS](https://es.reactjs.org/).
 
-In the project directory, you can run:
+Y se ha utilizado [Firebase](https://firebase.google.com/) como motor de base de datos
+
+
+## Descripción de la Aplicaciòn
+
+La aplicación permite, autentificar, registrar, editar, listar y eliminar a empleados
+
+La aplicación cuenta con cinco vistas:
+
+* Login:      Ingreso de credenciales para ingresar al sistema
+              Acceso a todos
+
+* Principal:  Muestra gráfico estadístico de tipos de vacunas y empleados vacunados
+              Accesso a todos
+
+* Actualizar Datos :  Actualización de datos del empleado
+                      Mis datos -> Acceso a todos
+                      Datos de otro -> Acceso solo a Administradores
+
+* Añadir Empleado   : Ingresa un nuevo empleado
+                      Acceso solo a Administradores
+
+* Consultas         : Listar todos los empleados ingresados en el sistema, y filtros                      
+                      Acceso solo a Administradores
+
+
+### `Nota:` 
+     Las consultas y gráfico se actualizan en línea si otro usuario ingresa, modifica o elimina empleados       
+
+
+## Dependencias
+
+Node JS (Se ha probado en la versión 16.14.2)
+
+Browser de su preferencia (Se ha probado bajo Google Chrome)
+
+Conectividad a Internet (Por conexión a Firebase es requerida)
+
+
+## Iniciar Applicación
+
+En el directorio del proyecto, correr:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Correr la aplicación en eun browser.\
+Abrir [http://localhost:3000](http://localhost:3000) para interactuar con la aplicación.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Credenciales para el ingreso al sistema:
+     usuario: robert  &   contraseña: escobar    ->   Administrador
+     usuario: mary    &   contraseña: moreira    ->   Empleado
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

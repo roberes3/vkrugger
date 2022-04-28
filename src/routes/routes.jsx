@@ -9,7 +9,7 @@ import QueryPage  from '../view/QueryUser';
 
 import * as ROUTE from './const';
 
-
+// Vistas de la aplicacion
 const AppRoutes = () => (
 
       <div>

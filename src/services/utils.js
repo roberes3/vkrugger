@@ -1,3 +1,5 @@
+// Modulo que tiene funciones utilitarias
+
 
 // pregunta si es un email valido
 export const isEmail = (email) => {
