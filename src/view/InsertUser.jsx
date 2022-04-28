@@ -28,39 +28,45 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(3),
       marginLeft: theme.spacing(1),
     },
-  }));
+}));
+
+// estructura de un empleado sin datos
+const emptyEmployee = {
+    name     : "",
+    lastName : "",
+    email    : "",
+    cardId   : "",
+    rol      : "user",
+    birthday : (new Date()).toString(),
+    address  : "",
+    phone    : "",
+    isVaccinated : false,
+    vaccine      : {
+        type  : '',
+        date  : (new Date()).toString(),
+        doses : ''
+    }
+}
+
+// estructura para validacion de la forma vacia
+const emptyForm = {
+    name     : true,
+    lastName : true,
+    email    : true,
+    cardId   : true,
+    isValid  : true,
+    save     : false,
+    msg      : ""
+}
 
 // Componente con la forma que ingresa el empleado
 const FormInsert = ({setMsg}) => {
 
     const classes = useStyles();
 
-    const [employee, setEmployee] = useState({
-        name     : "",
-        lastName : "",
-        email    : "",
-        cardId   : "",
-        rol      : "user",
-        birthday : (new Date()).toString(),
-        address  : "",
-        phone    : "",
-        isVaccinated : false,
-        vaccine      : {
-            type  : '',
-            date  : (new Date()).toString(),
-            doses : ''
-        }
-    });
+    const [employee, setEmployee] = useState({...emptyEmployee});
 
-    const [form, setForm] = useState({
-        name     : true,
-        lastName : true,
-        email    : true,
-        cardId   : true,
-        isValid  : true,
-        save     : false,
-        msg      : ""
-    });
+    const [form, setForm] = useState({...emptyForm});
 
     
     // realiza la validacion del formulario
@@ -152,13 +158,13 @@ const FormInsert = ({setMsg}) => {
             if(!utils.isOnlyLetters(e.target.value)){
                 return;
             }
-            changedEmployee.name = e.target.value;
+            changedEmployee.name = e.target.value.toUpperCase();
             break;
         case "L":
             if(!utils.isOnlyLetters(e.target.value)){
                 return;
             }
-            changedEmployee.lastName = e.target.value;
+            changedEmployee.lastName = e.target.value.toUpperCase();
             break;
         case "E":
             changedEmployee.email = e.target.value;
@@ -172,21 +178,9 @@ const FormInsert = ({setMsg}) => {
     // limpia al empleado
     const cleanEmployee = () => {
         setEmployee({ // limpia los datos del empleado
-            name     : "",
-            lastName : "",
-            email    : "",
-            cardId   : "",
-            rol      : "user"
-        });
+            ...emptyEmployee});
         setForm({ // limpia los datos de la forma
-            name     : true,
-            lastName : true,
-            email    : true,
-            cardId   : true,
-            isValid  : true,
-            save     : false,
-            msg      : ""
-        });
+            ...emptyForm});
         setMsg('');
     }
 

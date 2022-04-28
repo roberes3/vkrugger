@@ -86,7 +86,7 @@ const QueryUser = ({login, aShowUpdate}) => {
         return () => {
             Data.removeSubscription('query');
         }
-    }, []);
+    });
 
     let users, data = Data.getUsers();
    

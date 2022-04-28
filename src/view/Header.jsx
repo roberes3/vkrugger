@@ -13,7 +13,6 @@ import User from '@material-ui/icons/Person';
 import UserAdd from '@material-ui/icons/PersonAdd';
 import ViewList from '@material-ui/icons/ViewList';
 import Home from '@material-ui/icons/Home';
-import Badge from '@material-ui/core/Badge';
 import Box from '@material-ui/core/Box';
 import Tooltip from '@material-ui/core/Tooltip';
 
@@ -180,9 +179,7 @@ const Header = (props) => {
               <Box m={1}>
                 <Tooltip title="Regresar Inicio">
                   <IconButton aria-label="mail" onClick={() => props.aShowHome()}>
-                    <Badge badgeContent={0} color="secondary" className="header-badge" onClick={ShowHome}>
-                      <Home />
-                    </Badge>
+                      <Home />                  
                   </IconButton>
                 </Tooltip>
               </Box>

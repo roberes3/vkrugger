@@ -4,6 +4,7 @@ import db from "./firebase";
 import { ref, onValue, set, onChildAdded, onChildChanged, onChildRemoved, get} from "firebase/database";
 import password from 'secure-random-password';
 
+// Clase que maneja los datos suminstrados por firebase
 class Data {
 
   constructor(){
@@ -14,6 +15,7 @@ class Data {
   init(){
       // mantiene los usuarios
       this.users = [];
+      this.stadistics = {};
       
       // suscripciones de componetes
       this.subscriptions = {};
@@ -31,8 +33,9 @@ class Data {
       onChildRemoved(usersRef, doNotify);  
       
       // obtiene los usuarios actuales
-      this.loadUsers((users, stadistics) => {
+      this.loadUsers((users) => {
           this.users = Object.values(users);
+          this.stadistics = this.loadStadistics(this.users);
       })
   }
 
@@ -50,8 +53,9 @@ class Data {
   // notifica de los cambios a las subscripciones
   notifySubscriptions(){    
     // obtiene los usuarios y las estadisticas
-    this.loadUsers( (users, staditics) => {
-        this.users = Object.values(users);;
+    this.loadUsers( (users) => {
+        this.users = Object.values(users);
+        this.stadistics = this.loadStadistics(this.users);
 
         // si no hay suscripciones escuchando no realiza nada
         if(!Object.keys(this.subscriptions).length){
@@ -61,7 +65,7 @@ class Data {
         for (let prop in this.subscriptions) {
             let callbackNotify =  this.subscriptions[prop];           
             if(callbackNotify){
-              callbackNotify(data, staditics);
+              callbackNotify(this.users, this.stadistics);
             }
         }
     });    
@@ -122,7 +126,7 @@ class Data {
       return this.users.find( u => u.idcard === idcard) ? false : true;
   }
 
-  // check si la cedula es unica
+  // check si el usuario es unico
   isUniqueUser(user){
     return this.users.find( u => u.user === user.user && u.cardId !== user.cardId) ? false : true;
   }
@@ -131,19 +135,13 @@ class Data {
   loadUsers(callback){
     const starRef = ref(db, 'users/');
     onValue(starRef, (snapshot) => {
-        const data      = snapshot.val();                        
-        const staditics = this.getStadistics();
-        callback(data, staditics);                        
+        const data  = snapshot.val();                        
+        callback(data);                        
     }, {onlyOnce: true});
   }
 
-  // obtiene todos los usuarios
-  getUsers(callback){
-    return this.users;
-  }
-
   // obtiene las estadisticas
-  getStadistics(data){
+  loadStadistics(data){
     let staditics = { // objeto con las estadisticas
         users     : 0,
         vacated   : 0,
@@ -182,10 +180,20 @@ class Data {
     }
     return staditics;
   }
+
+  // obtiene todos los usuarios
+  getUsers(){
+    return this.users;
+  }
+  
+  // obtiene las estadisticas
+  getStadistics(){
+    return this.stadistics;
+  }
   
 }
 
-// inicializa la base de datos
+// inicializa los datos manejados por el firebase
 let data = new Data();
 
 export default data;
